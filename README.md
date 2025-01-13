@@ -1,16 +1,14 @@
 <h1 align="center" id="title">Collaborative Study Platform</h1>
 
-<p id="description">A video game review aggregator website built on ReactJS frontend and ExpressJS backend. It is a full stack application that utilizes the MERN stack. This project was built as a submission for the 10th assignment of the 10th batch of ProgrammingHero's Level 1 Fullstack Web Development Course.</p>
+<p id="description">A collaborative sttudy platform website built on ReactJS frontend and ExpressJS backend. It is a full stack application that utilizes the MERN stack. This project was built as a submission for the 12th assignment of the 10th batch of ProgrammingHero's Level 1 Fullstack Web Development Course.</p>
 
 <h2>🚀 Demo</h2>
 
-[https://chillgamer-ostitteranondo.web.app/support](https://chillgamer-ostitteranondo.web.app/support)
+[N/A](N/A)
 
 <h2>🚀 Server</h2>
 
-[https://github.com/Ostitter-Anondo/chill-gamer-server](https://github.com/Ostitter-Anondo/chill-gamer-server)
-
-  
+[N/A](N/A)
   
 <h2>🧐 Features</h2>
 

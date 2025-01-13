@@ -1,22 +1,17 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router";
-import Home from "./pages/Home";
+import { RouterProvider } from "react-router";
 import ContextProvider from "./utils/ContextProvider";
 import { Toaster } from "react-hot-toast";
+import { Routes } from "./routes/Routes";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-]);
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ContextProvider >
-      <RouterProvider router={router} />
+      <RouterProvider router={Routes} />
       <Toaster position="top-center" reverseOrder={false} />
     </ContextProvider>
   </StrictMode>

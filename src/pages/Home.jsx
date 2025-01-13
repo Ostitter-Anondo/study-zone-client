@@ -6,7 +6,9 @@ const Home = () => {
       <header>
         <Navbar />
       </header>
-      <main></main>
+      <main>
+        home e achi
+      </main>
     </>
   );
 };
