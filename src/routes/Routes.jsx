@@ -4,6 +4,7 @@ import Root from "../pages/Root";
 import AllSessions from "../pages/AllSessions/AllSessions";
 import Login from "../pages/Login/Login";
 import LoginForm from "../pages/Login/LoginForm";
+import Signup from "../pages/Signup/Signup";
 
 export const Routes = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/allsessions",
         element: <AllSessions />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
       {
         path: "/login",

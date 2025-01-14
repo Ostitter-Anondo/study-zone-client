@@ -2,12 +2,19 @@ import { useState } from "react";
 import Context from "./Context";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase/firebase.init";
 
 const ContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
-  const [wishlist, setWishlist] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lightTheme, setLightTheme] = useState(true);
+
+  // firebase stuff
+  const signupMailPass = (mail, pass) => {
+    return createUserWithEmailAndPassword(auth, mail, pass);
+
+  };
 
   const toastErr = (msg) =>
     toast.error(`${msg}`, {
@@ -40,8 +47,7 @@ const ContextProvider = ({ children }) => {
     setLoading,
     userData,
     setUserData,
-    wishlist,
-    setWishlist,
+    signupMailPass,
     lightTheme,
     setLightTheme,
     toastErr,
