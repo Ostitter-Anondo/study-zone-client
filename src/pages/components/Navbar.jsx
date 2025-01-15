@@ -1,11 +1,20 @@
 import { BsFillMenuButtonWideFill } from "react-icons/bs";
-import { Link, NavLink } from "react-router";
-import study from '../../assets/study.png';
-
+import { Link, NavLink, useNavigate } from "react-router";
+import study from "../../assets/study.png";
+import useMainContext from "../../utils/useMainContext";
 
 const Navbar = () => {
 
-  const links = <><li><NavLink to={"/"}>Home</NavLink></li></>
+  const { userData, signOutUser } = useMainContext();
+  const navigate = useNavigate();
+
+  const links = (
+    <>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
+      </li>
+    </>
+  );
 
   const authtBtns = (
     <>
@@ -27,6 +36,33 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
+    </>
+  );
+
+  const userBtns = (
+    <>
+      <div className="menu menu-horizontal justify-center items-center gap-3 sm:border border-base-300 bg-base-200 rounded-full">
+        <Link className="btn btn-circle size-12 p-1" to="/dashboard">
+          <img
+            src={
+              userData?.photo
+                ? userData.photo
+                : "https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"
+            }
+            className="object-fill aspect-square rounded-full"
+            alt="usrIMG"
+          />
+        </Link>
+        <button
+          onClick={() => {
+            signOutUser();
+            navigate("/");
+          }}
+          className="btn btn-outline btn-error rounded-full"
+        >
+          Sign Out
+        </button>
+      </div>
     </>
   );
 
@@ -55,7 +91,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="navbar-end">{authtBtns}</div>
+        <div className="navbar-end">{userData? userBtns : authtBtns}</div>
       </div>
     </>
   );

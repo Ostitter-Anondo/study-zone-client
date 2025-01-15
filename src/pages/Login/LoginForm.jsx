@@ -3,21 +3,38 @@ import { Link, useNavigate } from "react-router";
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { PiPasswordBold } from "react-icons/pi";
 import { HiOutlineMail } from "react-icons/hi";
+import useAxios from "../../utils/useAxios";
+import useMainContext from "../../utils/useMainContext";
 
 const LoginForm = () => {
-
+  const {
+    loginMailPass,
+    setUserData,
+    setBooked,
+    toastSuc,
+    toastErr,
+  } = useMainContext();
   const [showPassword, setShowPassword] = useState(false);
 
+  const axiosHook = useAxios();
   const navigate = useNavigate();
 
   const loginBehavior = (e) => {
     e.preventDefault();
-    
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    loginMailPass(email, password)
+      .then((result) => axiosHook.get(`/user/${result.user.uid}`))
+      .then((user) => {
+        setUserData(user.data.user);
+        setBooked(user.data.booked);
+        toastSuc(`User signed in successfully`);
+        navigate("/");
+      })
+      .catch((err) => toastErr(err.message));
   };
 
-  const googleLogin = () => {
-    
-  };
+  const googleLogin = () => {};
 
   return (
     <div className="my-12">
