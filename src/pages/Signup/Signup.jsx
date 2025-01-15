@@ -31,7 +31,7 @@ const Signup = () => {
     const password = e.target.password.value;
     const name = e.target.name.value;
     const photo = e.target.photo.value;
-    const role = "admin";
+    const role = e.target.role.value;
     if (!emailRegex.test(email)) {
       toastErr("bad email");
       return;
