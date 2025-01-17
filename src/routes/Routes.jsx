@@ -39,10 +39,12 @@ export const Routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashboardRoute />
-      </PrivateRoute>
-    )
+    element: <Root />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <PrivateRoute><DashboardRoute /></PrivateRoute>
+      }
+    ]
   },
 ]);

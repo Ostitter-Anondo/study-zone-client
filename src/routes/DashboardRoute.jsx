@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import Footer from "../pages/components/Footer";
-import Navbar from "../pages/components/Navbar";
 import LoginForm from "../pages/Login/LoginForm";
 import useAxios from "../utils/useAxios";
 import useMainContext from "../utils/useMainContext";
 import LoadingPage from "./components/LoadingPage";
 import useRole from "./components/useRole";
+import AdminPage from "../pages/Dashboard/AdminPage";
+import InstructorPage from "../pages/Dashboard/InstructorPage";
 
 const DashboardRoute = () => {
   const [roleData, roleDataLoading] = useRole();
@@ -25,16 +25,18 @@ const DashboardRoute = () => {
     return <LoadingPage />;
   }
 
-  if (roleData) {
-    return <>
-    <header className='sticky top-0 z-50 bg-base-300/30 backdrop-blur'>
-      <Navbar />
-    </header>
-    <main className="min-h-screen">
-      {roleData}
-    </main>
-    <Footer />
-  </>;
+  if (roleData === "admin") {
+    return (
+      <>
+        <AdminPage />
+      </>
+    );
+  } else if (roleData === "instructor") {
+    return (
+      <>
+        <InstructorPage />
+      </>
+    );
   }
 
   return (

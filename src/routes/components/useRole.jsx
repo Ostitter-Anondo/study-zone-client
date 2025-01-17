@@ -3,7 +3,7 @@ import useAxios from "../../utils/useAxios";
 import useMainContext from "../../utils/useMainContext";
 
 const useRole = () => {
-  const { loading } = useMainContext();
+    const { loading } = useMainContext();
     const axiosHook = useAxios();
     const { data: roleData, isPending: roleDataLoading } = useQuery({
         queryKey: ['roleData'],
