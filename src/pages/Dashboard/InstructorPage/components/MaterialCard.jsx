@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import useGetMaterial from "../../../../utils/hooks/useGetMaterial";
 import AddMaterial from "./AddMaterial";
+import MaterialDataCard from "./MaterialDataCard";
 
 const MaterialCard = ({ session }) => {
 	const [material] = useGetMaterial(session._id);
@@ -25,15 +26,29 @@ const MaterialCard = ({ session }) => {
 						| {new Date(session.clsEnd).toDateString()}
 					</h4>
 				</div>
-				<div className="flex justify-center">
+				<div className="flex md:col-span-2 gap-3 flex-wrap justify-center">
 					<span className="badge badge-info badge-lg">${session.price}</span>
+					<span
+						className={`badge badge-success badge-lg btn-info ${
+							!material ? "hidden" : ""
+						}`}
+					>
+						Materials Available
+					</span>
+					<span
+						className={`badge badge-error badge-lg btn-info ${
+							!material ? "" : "hidden"
+						}`}
+					>
+						Materials Unvailable
+					</span>
 				</div>
-				<div className="md:col-span-2 flex justify-end md:justify-center gap-3 flex-wrap">
+				<div className="flex justify-end md:justify-center gap-3 flex-wrap">
 					<button
 						onClick={() =>
-							document.getElementById(session._id + "edt").showModal()
+							document.getElementById(session._id + "matView").showModal()
 						}
-						className={`btn btn-xs btn-info ${!material?"hidden":""}`}
+						className={`btn btn-xs btn-info ${!material ? "hidden" : ""}`}
 					>
 						View Materials
 					</button>
@@ -41,17 +56,9 @@ const MaterialCard = ({ session }) => {
 						onClick={() =>
 							document.getElementById(session._id + "matAdd").showModal()
 						}
-						className={`btn btn-xs btn-info ${!material?"":"hidden"}`}
+						className={`btn btn-xs btn-info ${!material ? "" : "hidden"}`}
 					>
 						Add Materials
-					</button>
-					<button
-						onClick={() =>
-							document.getElementById(session._id + "edt").showModal()
-						}
-						className={`btn btn-xs btn-info ${!material?"hidden":""}`}
-					>
-						Edit Materials
 					</button>
 				</div>
 			</div>
@@ -66,6 +73,16 @@ const MaterialCard = ({ session }) => {
 					<h3 className="font-bold text-lg">Add material to {session.title}</h3>
 					<p className="py-4">Are you sure you want to add materials?</p>
 					<AddMaterial sessId={session._id} />
+				</div>
+			</dialog>
+			<dialog id={session._id + "matView"} className="modal overflow-scroll">
+				<div className="modal-box">
+					<form method="dialog">
+						<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+							✕
+						</button>
+					</form>
+					<MaterialDataCard materialData={material} />
 				</div>
 			</dialog>
 		</>

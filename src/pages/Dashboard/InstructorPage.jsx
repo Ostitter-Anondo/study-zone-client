@@ -3,6 +3,7 @@ import Profile from "./AdminPage/Profile";
 import CreateSession from "./InstructorPage/CreateSession";
 import TutorSessions from "./InstructorPage/TutorSessions";
 import MaterialsPage from "./InstructorPage/MaterialsPage";
+import AllMaterials from "./InstructorPage/AllMaterials";
 
 const InstructorPage = () => {
 	return (
@@ -12,7 +13,8 @@ const InstructorPage = () => {
 					<Tab className="tab">Profile</Tab>
 					<Tab className="tab">Create Session</Tab>
 					<Tab className="tab">My Sessions</Tab>
-					<Tab className="tab">Materials</Tab>
+					<Tab className="tab">Add Materials</Tab>
+					<Tab className="tab">All Materials</Tab>
 				</TabList>
 			</div>
 
@@ -27,6 +29,9 @@ const InstructorPage = () => {
 			</TabPanel>
 			<TabPanel className="w-11/12 mx-auto">
 				<MaterialsPage />
+			</TabPanel>
+			<TabPanel className="w-11/12 mx-auto">
+				<AllMaterials />
 			</TabPanel>
 		</Tabs>
 	);
