@@ -1,25 +1,18 @@
+import useMySessions from "../../../utils/hooks/useMySessions";
+import useMainContext from "../../../utils/useMainContext";
+import NoData from "../components/NoData";
+import TutorSessionCard from "./components/TutorSessionCard";
+
 const TutorSessions = () => {
+  const {userData} = useMainContext();
+  const [sessions] = useMySessions(userData.uid);
+  if (sessions.length === 0 || !sessions) {
+    return <NoData />
+  }
   return (
-    <div className="flex flex-col gap-6 md:gap-12">
-			<div className="collapse collapse-arrow bg-base-200">
-				<input type="radio" name="my-accordion-2" defaultChecked />
-				<div className="collapse-title text-xl font-medium">
-					Approved Sessions
-				</div>
-				<div className="collapse-content">
-					<p>hello</p>
-				</div>
-			</div>
-			<div className="collapse collapse-arrow bg-base-200">
-				<input type="radio" name="my-accordion-2" />
-				<div className="collapse-title text-xl font-medium">
-					Rejected Sessions
-				</div>
-				<div className="collapse-content">
-					<p>hello</p>
-				</div>
-			</div>
-		</div>
+    <div className="flex flex-col items-center gap-6">
+      {sessions.map(pending => <TutorSessionCard key={pending._id} session={pending} />)}
+    </div>
   );
 };
 
