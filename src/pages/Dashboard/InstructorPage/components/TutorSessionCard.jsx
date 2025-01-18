@@ -107,14 +107,19 @@ const TutorSessionCard = ({ session }) => {
 				<div className="flex flex-col gap-2">
 					<h3 className="font-bold text-xl text-primary">{session.title}</h3>
 					<h4 className="flex gap-3 text-sm pr-3">
-						<span className="badge badge-success badge-sm">
+						<span className="badge badge-info badge-sm">
 							${session.price}
 						</span>
-						<span className="badge badge-secondary badge-sm">
+						<span
+							className={`badge badge-sm ${
+								session.status === "approved" ? "badge-success" : ""
+							} ${session.status === "rejected" ? "badge-error" : ""} ${
+								session.status === "pending" ? "badge-warning" : ""
+							}`}
+						>
 							{session.status}
 						</span>
 					</h4>
-					<h4 className="font-extralight text-sm pr-3">{session.email}</h4>
 				</div>
 				<div
 					className={`flex flex-col gap-2 ${
@@ -207,7 +212,7 @@ const TutorSessionCard = ({ session }) => {
 						</button>
 					</form>
 					<h3 className="font-bold text-lg">Edit Session: {session.title}</h3>
-					<p className="py-4">Are you sure you want to delete this session?</p>
+					<p className="py-4">Are you sure you want to edit this session?</p>
 					<form onSubmit={handleEdit} className="w-11/12 grid mx-auto gap-6">
 						<label className="w-full input input-bordered flex items-center gap-2">
 							<MdOutlineTitle />
