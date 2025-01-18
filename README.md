@@ -8,7 +8,7 @@
 
 <h2>🚀 Server</h2>
 
-[N/A](N/A)
+[Server Repo](https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-Ostitter-Anondohttps://github.com/Programming-Hero-Web-Course4/b10a12-server-side-Ostitter-Anondo)
   
 <h2>🧐 Features</h2>
 

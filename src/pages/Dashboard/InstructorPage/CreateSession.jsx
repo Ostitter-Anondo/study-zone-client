@@ -2,10 +2,12 @@ import { MdOutlineTitle } from "react-icons/md";
 import useMainContext from "../../../utils/useMainContext";
 import { BiEnvelope, BiMoney, BiRename, BiStopwatch } from "react-icons/bi";
 import useAxios from "../../../utils/useAxios";
+import { useNavigate } from "react-router";
 
 const CreateSession = () => {
 	const { userData, toastSuc, toastErr } = useMainContext();
 	const axiosHook = useAxios();
+  const navigate = useNavigate();
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -20,6 +22,7 @@ const CreateSession = () => {
 		const clsEnd = new Date(e.target.clsend.value).getTime();
 		const price = e.target.price.value;
 		const duration = e.target.duration.value;
+    const status = "pending";
 
 		const today = new Date().getTime();
 
@@ -35,6 +38,7 @@ const CreateSession = () => {
 			clsEnd,
 			price,
 			duration,
+      status,
 		};
 
 		if (today >= regStart) {
@@ -63,6 +67,7 @@ const CreateSession = () => {
 			.post(`/newsession`, body)
 			.then((res) => {
 				toastSuc(res.data.message);
+        navigate("/dashboard")
 			})
 			.catch((err) => console.error(err));
 	};
