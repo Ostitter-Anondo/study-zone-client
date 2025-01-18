@@ -82,7 +82,7 @@ const TutorSessionCard = ({ session }) => {
 		document.getElementById(session._id + "edt").close();
 	};
 	const handleRerequest = () => {
-    axiosHook
+		axiosHook
 			.put("/rerequest", {
 				sessId: session._id,
 				data: {
@@ -99,7 +99,7 @@ const TutorSessionCard = ({ session }) => {
 			.catch((err) => {
 				toastErr(err.message);
 			});
-  };
+	};
 
 	return (
 		<>
@@ -116,7 +116,11 @@ const TutorSessionCard = ({ session }) => {
 					</h4>
 					<h4 className="font-extralight text-sm pr-3">{session.email}</h4>
 				</div>
-				<div className="flex flex-col gap-2">
+				<div
+					className={`flex flex-col gap-2 ${
+						session.status === "rejected" ? "hidden" : ""
+					}`}
+				>
 					<h4 className="font-extralight text-sm text-info pr-3">
 						<span className="text-accent">
 							{new Date(session.regStart).toDateString()}
@@ -130,8 +134,31 @@ const TutorSessionCard = ({ session }) => {
 						| {new Date(session.clsEnd).toDateString()}
 					</h4>
 				</div>
+				<div
+					className={`rounded border border-base-300 p-2 flex flex-col gap-2 ${
+						session.status === "rejected" ? "" : "hidden"
+					}`}
+				>
+					<h4 className="font-extralight text-sm text-error pr-3">
+						{session.reason}
+					</h4>
+				</div>
 				<div className="rounded border border-base-300 p-2 md:col-span-2 h-full overflow-scroll">
-					<p className="text-justify">{session.desc}</p>
+					<p
+						className={`text-justify ${
+							session.status === "rejected" ? "hidden" : ""
+						}`}
+					>
+						{session.desc}
+					</p>
+					<p
+						className={`text-justify ${
+							session.status === "rejected" ? "" : "hidden"
+						}`}
+					>
+						<span className="text-warning">Feedback: </span>
+						{session.feedback}
+					</p>
 				</div>
 				<div className="flex justify-end md:justify-center gap-3 flex-wrap">
 					<button

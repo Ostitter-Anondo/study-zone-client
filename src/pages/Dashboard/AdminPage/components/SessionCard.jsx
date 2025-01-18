@@ -52,6 +52,7 @@ const SessionCard = ({ session }) => {
 			.catch((err) => {
 				toastErr(err.message);
 			});
+		document.getElementById(session._id + "rej").close();
 	};
 	const handleDelete = (e) => {
 		e.preventDefault();
