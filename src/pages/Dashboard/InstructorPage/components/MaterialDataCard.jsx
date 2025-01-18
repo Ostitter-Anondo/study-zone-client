@@ -13,7 +13,9 @@ const MaterialDataCard = ({ materialData }) => {
 			</figure>
 			<div className="card-body items-center text-center prose xl:prose-xl">
 				<h2 className="card-title">{materialData.title}</h2>
-				<Markdown className="max-w-96 break-all">{materialData.materials}</Markdown>
+				<Markdown className="max-w-96 break-all">
+					{materialData.materials}
+				</Markdown>
 			</div>
 		</>
 	);
