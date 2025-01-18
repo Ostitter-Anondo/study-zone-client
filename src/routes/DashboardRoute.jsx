@@ -8,44 +8,46 @@ import AdminPage from "../pages/Dashboard/AdminPage";
 import InstructorPage from "../pages/Dashboard/InstructorPage";
 
 const DashboardRoute = () => {
-  const [roleData, roleDataLoading] = useRole();
+	const [roleData, roleDataLoading] = useRole();
 
-  const { userData } = useMainContext();
+	const { userData } = useMainContext();
 
-  const axiosHook = useAxios();
+	const axiosHook = useAxios();
 
-  useEffect(() => {
-    axiosHook
-      .get(`/jwtverify?uid=${userData.uid}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
-  }, [axiosHook, userData.uid]);
+	useEffect(() => {
+		axiosHook
+			.get(`/jwtverify?uid=${userData.uid}`)
+			.then((res) => console.log(res))
+			.catch((err) => console.error(err));
+	}, [axiosHook, userData.uid]);
 
-  if (roleDataLoading) {
-    return <LoadingPage />;
-  }
+	if (roleDataLoading) {
+		return <LoadingPage />;
+	}
 
-  if (roleData === "admin") {
-    return (
-      <>
-        <AdminPage />
-      </>
-    );
-  } else if (roleData === "instructor") {
-    return (
-      <>
-        <InstructorPage />
-      </>
-    );
-  }
+	if (roleData === "admin") {
+		return (
+			<>
+				<AdminPage />
+			</>
+		);
+	} else if (roleData === "instructor") {
+		return (
+			<>
+				<InstructorPage />
+			</>
+		);
+	} else if (roleData === "student") {
+		return <></>;
+	}
 
-  return (
-    <>
-      <div className="flex my-24 items-center justify-center">
-        <LoginForm />
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div className="flex my-24 items-center justify-center">
+				<LoginForm />
+			</div>
+		</>
+	);
 };
 
 export default DashboardRoute;

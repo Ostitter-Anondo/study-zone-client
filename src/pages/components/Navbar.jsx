@@ -13,6 +13,12 @@ const Navbar = () => {
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
+      <li>
+        <NavLink to={"/allsessions"}>All Sessions</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/announcements"}>Announcements</NavLink>
+      </li>
     </>
   );
 

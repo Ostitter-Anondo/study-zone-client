@@ -7,6 +7,7 @@ import LoginForm from "../pages/Login/LoginForm";
 import Signup from "../pages/Signup/Signup";
 import DashboardRoute from "./DashboardRoute";
 import PrivateRoute from "./PrivateRoute";
+import NotFound from "../pages/NotFound";
 
 export const Routes = createBrowserRouter([
   {
@@ -46,5 +47,9 @@ export const Routes = createBrowserRouter([
         element: <PrivateRoute><DashboardRoute /></PrivateRoute>
       }
     ]
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
