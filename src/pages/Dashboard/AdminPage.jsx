@@ -3,6 +3,7 @@ import "react-tabs/style/react-tabs.css";
 import Profile from "./AdminPage/Profile";
 import UserManagement from "./AdminPage/UserManagement";
 import ManageSessions from "./AdminPage/ManageSessions";
+import AllAdminMaterials from "./AdminPage/AllAdminMaterials";
 
 const AdminPage = () => {
   return (
@@ -13,7 +14,7 @@ const AdminPage = () => {
             <Tab className="tab">Profile</Tab>
             <Tab className="tab">Users</Tab>
             <Tab className="tab">Manage Sessions</Tab>
-            <Tab className="tab">Manage Reviews</Tab>
+            <Tab className="tab">Manage Materials</Tab>
           </TabList>
         </div>
 
@@ -27,7 +28,7 @@ const AdminPage = () => {
           <ManageSessions />
         </TabPanel>
         <TabPanel className="w-11/12 mx-auto">
-          Any content 4
+          <AllAdminMaterials />
         </TabPanel>
       </Tabs>
     </>
