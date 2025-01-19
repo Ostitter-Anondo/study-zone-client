@@ -3,12 +3,16 @@ import useGetMyNotes from "../../../utils/hooks/useGetMyNotes";
 import EditNote from "./components/EditNote";
 import useAxios from "../../../utils/useAxios";
 import useMainContext from "../../../utils/useMainContext";
+import NoData from "../components/NoData";
 
 const AllNotes = () => {
 	const [myNotes, refetch] = useGetMyNotes();
 	const { toastSuc, toastErr } = useMainContext();
 	const axiosHook = useAxios();
 	console.log(myNotes);
+  if (!myNotes || myNotes.length === 0) {
+    return <NoData />
+  }
 	return (
 		<>
 			<div className="grid mx-auto md:w-9/12 lg:w-7/12 gap-6">

@@ -11,6 +11,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import useMainContext from "../../utils/useMainContext";
 import useAxios from "../../utils/useAxios";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const Signup = () => {
   const { signupMailPass, toastErr, toastSuc } = useMainContext();
@@ -66,6 +67,20 @@ const Signup = () => {
         className="flex flex-col w-7/12 items-center mx-auto gap-6 my-12"
       >
         <div className="flex justify-around w-full">
+          <div className="form-control">
+            <label className="label cursor-pointer gap-3">
+              <span className="font-semibold text-xl flex gap-1 items-center">
+              <MdAdminPanelSettings /> Admin
+              </span>
+              <input
+                type="radio"
+                name="role"
+                value="admin"
+                className="radio checked:bg-green-500"
+                defaultChecked
+              />
+            </label>
+          </div>
           <div className="form-control">
             <label className="label cursor-pointer gap-3">
               <span className="font-semibold text-xl flex gap-1 items-center">

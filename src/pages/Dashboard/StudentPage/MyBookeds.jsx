@@ -2,11 +2,15 @@ import Markdown from "react-markdown";
 import useGetMyBooked from "../../../utils/hooks/useGetMyBooked";
 import useMainContext from "../../../utils/useMainContext";
 import { Link } from "react-router";
+import NoData from "../components/NoData";
 
 const MyBookeds = () => {
 	const { booked } = useMainContext();
 	const [myBooked] = useGetMyBooked(booked.wishlist);
 	console.log(myBooked);
+	if (myBooked.length === 0 || !myBooked) {
+		return <NoData />;
+	}
 	return (
 		<div>
 			{myBooked.map((booking) => (
@@ -44,7 +48,9 @@ const MyBookeds = () => {
 						<Link
 							to={`/review/${booking._id}`}
 							className="btn btn-sm btn-outline btn-success"
-						>Review</Link>
+						>
+							Review
+						</Link>
 					</div>
 				</div>
 			))}
