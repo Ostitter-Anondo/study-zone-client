@@ -15,7 +15,7 @@ const ContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [booked, setBooked] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [lightTheme, setLightTheme] = useState(true);
+  const [paymentInfo, setPaymentInfo] = useState({sessId:"", price: 0});
 
   // firebase stuff
 
@@ -31,6 +31,7 @@ const ContextProvider = ({ children }) => {
   const signOutUser = () => {
     setLoading(true);
     setUserData(null);
+    setPaymentInfo({sessId:"", price: 0});
     toastSuc(`user successfully signed out`);
     return signOut(auth);
   };
@@ -73,8 +74,8 @@ const ContextProvider = ({ children }) => {
     signupMailPass,
     loginMailPass,
     signOutUser,
-    lightTheme,
-    setLightTheme,
+    paymentInfo,
+    setPaymentInfo,
     toastErr,
     toastSuc,
   };

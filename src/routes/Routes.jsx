@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import NotFound from "../pages/NotFound";
 import axios from "axios";
 import SingleSession from "../pages/SingleSession/SingleSession";
+import Payment from "../pages/Payment/Payment";
 
 export const Routes = createBrowserRouter([
 	{
@@ -35,10 +36,14 @@ export const Routes = createBrowserRouter([
 						<SingleSession />
 					</PrivateRoute>
 				),
-				loader: ({params}) =>
-					axios.get(`${import.meta.env.VITE_dbApi}/indivsession/${params.id}`, {
-						withCredentials: true,
-					}),
+			},
+			{
+				path: "/payment",
+				element: (
+					<PrivateRoute>
+						<Payment />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/signup",
