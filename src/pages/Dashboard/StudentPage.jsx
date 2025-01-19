@@ -3,6 +3,8 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Profile from "./AdminPage/Profile";
 import CreateNote from "./StudentPage/CreateNote";
 import AllNotes from "./StudentPage/AllNotes";
+import MyBookeds from "./StudentPage/MyBookeds";
+import MyMaterials from "./StudentPage/MyMaterials";
 
 const StudentPage = () => {
   return (
@@ -30,10 +32,10 @@ const StudentPage = () => {
 					<AllNotes />
 				</TabPanel>
 				<TabPanel className="w-11/12 mx-auto">
-					<></>
+					<MyBookeds />
 				</TabPanel>
 				<TabPanel className="w-11/12 mx-auto">
-					<></>
+					<MyMaterials />
 				</TabPanel>
 			</Tabs>
     </>
