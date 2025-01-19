@@ -228,7 +228,7 @@ const SessionCard = ({ session }) => {
 							<label className="w-full input input-bordered flex items-center gap-2 md:col-span-1">
 								<BiMoney />
 								<input
-									type="text"
+									type="number"
 									className="grow"
 									placeholder={`suggested price: ` + session.price}
 									name="finalprice"

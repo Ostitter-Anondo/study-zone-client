@@ -6,6 +6,7 @@ import LoadingPage from "./components/LoadingPage";
 import useRole from "./components/useRole";
 import AdminPage from "../pages/Dashboard/AdminPage";
 import InstructorPage from "../pages/Dashboard/InstructorPage";
+import StudentPage from "../pages/Dashboard/StudentPage";
 
 const DashboardRoute = () => {
 	const [roleData, roleDataLoading] = useRole();
@@ -38,7 +39,7 @@ const DashboardRoute = () => {
 			</>
 		);
 	} else if (roleData === "student") {
-		return <></>;
+		return <><StudentPage /></>;
 	}
 
 	return (
