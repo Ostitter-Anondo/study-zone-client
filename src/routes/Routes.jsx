@@ -11,6 +11,7 @@ import NotFound from "../pages/NotFound";
 import axios from "axios";
 import SingleSession from "../pages/SingleSession/SingleSession";
 import Payment from "../pages/Payment/Payment";
+import AddReview from "../pages/Review/AddReview";
 
 export const Routes = createBrowserRouter([
 	{
@@ -34,6 +35,14 @@ export const Routes = createBrowserRouter([
 				element: (
 					<PrivateRoute>
 						<SingleSession />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: "/review/:id",
+				element: (
+					<PrivateRoute>
+						<AddReview />
 					</PrivateRoute>
 				),
 			},
