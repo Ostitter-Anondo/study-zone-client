@@ -4,20 +4,40 @@ import { useNavigate, useParams } from "react-router";
 import useMainContext from "../../utils/useMainContext";
 import useGetSession from "../../utils/hooks/useGetSession";
 import LoadingPage from "../../routes/components/LoadingPage";
+import useAxios from "../../utils/useAxios";
 
 const SingleSession = () => {
 	const { id } = useParams();
 	const [serverData] = useGetSession(id);
-  const session = serverData.session
-	const { userData, booked, setPaymentInfo } = useMainContext();
+	const session = serverData.session;
+	const { userData, booked, setPaymentInfo, setBooked, toastSuc, toastErr } =
+		useMainContext();
 
 	const today = new Date().getTime();
-  const navigate = useNavigate();
+	const navigate = useNavigate();
+	const axiosHook = useAxios();
 
-  const handleToPayment = () => {
-    setPaymentInfo({sessId: session._id ,price: Number(session.price), title: session.title})
-    navigate("/payment")
-  }
+	const handleToPayment = () => {
+		if (Number(session.price) === 0) {
+			const body = { wishlist: [...booked.wishlist, session._id] };
+			axiosHook
+				.put("/booking", body)
+				.then((res) => {
+					toastSuc(res.data.message);
+					setBooked(res.data.booked);
+				})
+				.catch((err) => {
+					toastErr(err.message);
+				});
+		} else {
+			setPaymentInfo({
+				sessId: session._id,
+				price: Number(session.price),
+				title: session.title,
+			});
+			navigate("/payment");
+		}
+	};
 
 	if (!session) {
 		return (
@@ -73,7 +93,7 @@ const SingleSession = () => {
 							<IoPricetagOutline />${session.price}
 						</h3>
 						<button
-              onClick={handleToPayment}
+							onClick={handleToPayment}
 							className={`btn btn-outline btn-success join-item`}
 							disabled={
 								userData.role === "admin" ||

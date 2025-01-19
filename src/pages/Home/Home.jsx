@@ -8,7 +8,8 @@ const Home = () => {
 	const axiosHook = useAxios();
 
 	const touchme = () => {
-		axiosHook.get("/login").then((res) => {
+    const fny = ['money', 'teka', 42]
+		axiosHook.get(`/login?fny=${fny}`).then((res) => {
 			toastSuc(res.data.message);
       console.log(res.data);
 		});

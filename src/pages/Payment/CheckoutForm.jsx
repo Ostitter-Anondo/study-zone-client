@@ -6,7 +6,7 @@ import useAxios from "../../utils/useAxios";
 const CheckoutForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
-	const { toastErr, paymentInfo, userData, toastSuc } = useMainContext();
+	const { toastErr, paymentInfo, userData, toastSuc, booked, setBooked } = useMainContext();
 	const axiosHook = useAxios();
 	const [clientSecret, setClientSecret] = useState("");
 	const [trxData, setTrxData] = useState(null);
@@ -63,6 +63,16 @@ const CheckoutForm = () => {
 					id: paymentIntent.id,
 					title: paymentInfo.title,
 				});
+				const body = { wishlist: [...booked.wishlist, paymentInfo.sessId] };
+				axiosHook
+					.put("/booking", body)
+					.then((res) => {
+						toastSuc(res.data.message);
+						setBooked(res.data.booked);
+					})
+					.catch((err) => {
+						toastErr(err.message);
+					});
 				toastSuc("purchase success");
 			}
 		}
@@ -128,7 +138,8 @@ const CheckoutForm = () => {
 						<span className="label-text">Charge</span>
 					</div>
 					<h3 className="input input-bordered w-full max-w-xs flex items-center">
-						{trxData ? trxData.cost.toFixed(2) : "n/a"} {trxData? trxData.currency: ""}
+						{trxData ? trxData.cost.toFixed(2) : "n/a"}{" "}
+						{trxData ? trxData.currency : ""}
 					</h3>
 				</label>
 				<label className="form-control w-full max-w-xs">
