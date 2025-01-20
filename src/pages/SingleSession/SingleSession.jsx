@@ -109,7 +109,7 @@ const SingleSession = () => {
 					<div className="prose lg:prose-xl text-justify">
 						<Markdown>{session.desc}</Markdown>
 					</div>
-					<div className={`join ${today > session.regEnd ? "hidden" : ""}`}>
+					<div className={`join ${today > session.regEnd || today < session.regStart ? "hidden" : ""}`}>
 						<h3 className="join-item input input-bordered input-success text-success flex gap-3 items-center text-xl">
 							<IoPricetagOutline />${session.price}
 						</h3>
@@ -128,6 +128,13 @@ const SingleSession = () => {
 					<h3
 						className={`join-item input input-bordered input-error text-error flex gap-3 items-center text-xl ${
 							today > session.regEnd ? "" : "hidden"
+						}`}
+					>
+						Registration Closed
+					</h3>
+					<h3
+						className={`join-item input input-bordered input-error text-error flex gap-3 items-center text-xl ${
+							today < session.regStart ? "" : "hidden"
 						}`}
 					>
 						Registration Closed
