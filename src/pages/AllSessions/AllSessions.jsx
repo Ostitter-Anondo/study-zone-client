@@ -15,7 +15,7 @@ const AllSessions = () => {
 			<Helmet>
 				<title>All Sessions</title>
 			</Helmet>
-			<div className="w-full h-screen flex flex-col justify-between">
+			<div className="w-full min-h-screen flex flex-col justify-between">
 				<div className="my-12 w-11/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6">
 					{sessions.map((session) => (
 						<div

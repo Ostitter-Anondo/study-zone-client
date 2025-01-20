@@ -12,6 +12,7 @@ import axios from "axios";
 import SingleSession from "../pages/SingleSession/SingleSession";
 import Payment from "../pages/Payment/Payment";
 import AddReview from "../pages/Review/AddReview";
+import AllAnnouncements from "../pages/AllAnnouncements/AllAnnouncements";
 
 export const Routes = createBrowserRouter([
 	{
@@ -27,6 +28,14 @@ export const Routes = createBrowserRouter([
 				element: <AllSessions />,
 				loader: () =>
 					axios.get(`${import.meta.env.VITE_dbApi}/countapproved`, {
+						withCredentials: true,
+					}),
+			},
+			{
+				path: "/announcements",
+				element: <AllAnnouncements />,
+				loader: () =>
+					axios.get(`${import.meta.env.VITE_dbApi}/countannouncements`, {
 						withCredentials: true,
 					}),
 			},

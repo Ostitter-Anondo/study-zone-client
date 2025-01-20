@@ -5,6 +5,7 @@ import UserManagement from "./AdminPage/UserManagement";
 import ManageSessions from "./AdminPage/ManageSessions";
 import AllAdminMaterials from "./AdminPage/AllAdminMaterials";
 import { Helmet } from "react-helmet-async";
+import MakeAnnouncement from "./AdminPage/MakeAnnouncement";
 
 const AdminPage = () => {
 	return (
@@ -19,6 +20,7 @@ const AdminPage = () => {
 						<Tab className="tab">Users</Tab>
 						<Tab className="tab">Manage Sessions</Tab>
 						<Tab className="tab">Manage Materials</Tab>
+						<Tab className="tab">Make Announcement</Tab>
 					</TabList>
 				</div>
 
@@ -33,6 +35,9 @@ const AdminPage = () => {
 				</TabPanel>
 				<TabPanel className="w-11/12 mx-auto">
 					<AllAdminMaterials />
+				</TabPanel>
+				<TabPanel className="w-11/12 mx-auto">
+					<MakeAnnouncement />
 				</TabPanel>
 			</Tabs>
 		</>
