@@ -22,6 +22,10 @@ export const Routes = createBrowserRouter([
 			{
 				path: "/",
 				element: <Home />,
+        loader: () =>
+					axios.get(`${import.meta.env.VITE_dbApi}/homepagestuff`, {
+						withCredentials: true,
+					}),
 			},
 			{
 				path: "/allsessions",
