@@ -133,11 +133,11 @@ const SingleSession = () => {
 						Registration Closed
 					</h3>
 					<h3
-						className={`join-item input input-bordered input-error text-error flex gap-3 items-center text-xl ${
+						className={`join-item input input-bordered input-info text-error flex gap-3 items-center text-xl ${
 							today < session.regStart ? "" : "hidden"
 						}`}
 					>
-						Registration Closed
+						Registration Coming Soon
 					</h3>
 				</div>
 				<hr className="w-11/12 mx-auto border-neutral-content" />
