@@ -4,7 +4,7 @@
 
 <h2>🚀 Demo</h2>
 
-[N/A](N/A)
+[Live Link](https://study-zone-ostitteranondo.web.app/)
 
 <h2>🚀 Server</h2>
 
@@ -17,8 +17,14 @@ Here're some of the project's best features:
 *   Built on MERN stack
 *   Dynamic user handling
 *   Beautified by Tailwind CSS and daisyUI
-*   Write Submit Read Edit and Delete videogame reviews
-*   Maintain a watchlist for games to look out for
+*   Back end based role verification
+*   Role based dashboard
+*   Admins can manage users and sessions
+*   Announcement feature for admins
+*   Students can create and store notes
+*   Working payment gateway system
+*   Instructors can create sessions
+*   Straight to server image upload feature
 
   
   
@@ -35,6 +41,9 @@ Technologies used in the project:
 *   React Helmet Async
 *   Firebase Authentication
 *   MongoDB Atlas
+*   React Fast Marquee
+*   React Hook Form
+*   React Tabs
 
 <h2>💖Like my work?</h2>
 
