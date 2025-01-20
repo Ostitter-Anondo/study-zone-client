@@ -48,7 +48,7 @@ const AllAnnouncements = () => {
 										.catch((err) => toastErr(err.message));
 								}}
 								className={`btn btn-xs btn-error ${
-									userData.role === "admin" ? "" : "hidden"
+									userData?.role === "admin" ? "" : "hidden"
 								}`}
 							>
 								delete

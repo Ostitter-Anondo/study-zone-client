@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import {
 	createUserWithEmailAndPassword,
 	GithubAuthProvider,
+	GoogleAuthProvider,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
 	signInWithPopup,
@@ -12,7 +13,6 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase/firebase.init";
 import axios from "axios";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
 
 const ContextProvider = ({ children }) => {
 	const [userData, setUserData] = useState(null);

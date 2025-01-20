@@ -38,12 +38,13 @@ const LoginForm = () => {
 
 	const googleLogin = () => {
     signInGoogle().then((res) => {
+      console.log(res.user)
       const body = {
         name: res.user.displayName,
         photo: res.user.photoURL,
         uid: res.user.uid,
         role: "student",
-        email: res.user.email,
+        email: "noreply@google.com",
       };
       axiosHook.put("/socialuser", body).then((res) => {
         setUserData(res.data.user);

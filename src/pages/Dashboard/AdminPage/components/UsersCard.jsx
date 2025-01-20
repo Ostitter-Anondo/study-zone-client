@@ -9,7 +9,7 @@ const UsersCard = ({ user }) => {
 	const [, refetch] = useAllUsers("AllUsers");
 	const changeRole = (role) => {
 		axiosHook.put("/rolechange", { uid: user.uid, role: role }).then((res) => {
-			toastSuc(res.message);
+			toastSuc(res.data.message);
 			refetch();
 		});
 	};
