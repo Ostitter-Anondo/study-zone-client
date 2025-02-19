@@ -37,25 +37,28 @@ const LoginForm = () => {
 	};
 
 	const googleLogin = () => {
-    signInGoogle().then((res) => {
-      console.log(res.user)
-      const body = {
-        name: res.user.displayName,
-        photo: res.user.photoURL,
-        uid: res.user.uid,
-        role: "student",
-        email: "noreply@google.com",
-      };
-      axiosHook.put("/socialuser", body).then((res) => {
-        setUserData(res.data.user);
-        setBooked(res.data.booked);
-        toastSuc(`github login success`);
-        navigate("/");
-      })
-      .catch((err) => toastErr(err.message));
-    })
-    .catch((err) => toastErr(err.message));
-  };
+		signInGoogle()
+			.then((res) => {
+				console.log(res.user);
+				const body = {
+					name: res.user.displayName,
+					photo: res.user.photoURL,
+					uid: res.user.uid,
+					role: "student",
+					email: "noreply@google.com",
+				};
+				axiosHook
+					.put("/socialuser", body)
+					.then((res) => {
+						setUserData(res.data.user);
+						setBooked(res.data.booked);
+						toastSuc(`github login success`);
+						navigate("/");
+					})
+					.catch((err) => toastErr(err.message));
+			})
+			.catch((err) => toastErr(err.message));
+	};
 
 	const githubLogin = () => {
 		signInGithub()
@@ -67,19 +70,64 @@ const LoginForm = () => {
 					role: "student",
 					email: "noreply@github.com",
 				};
-        axiosHook.put("/socialuser", body).then((res) => {
-          setUserData(res.data.user);
-          setBooked(res.data.booked);
-          toastSuc(`github login success`);
-          navigate("/");
-        })
-        .catch((err) => toastErr(err.message));
+				axiosHook
+					.put("/socialuser", body)
+					.then((res) => {
+						setUserData(res.data.user);
+						setBooked(res.data.booked);
+						toastSuc(`github login success`);
+						navigate("/");
+					})
+					.catch((err) => toastErr(err.message));
+			})
+			.catch((err) => toastErr(err.message));
+	};
+
+	const demoLogin = (mail, pass) => {
+		loginMailPass(mail, pass)
+			.then((result) => axiosHook.get(`/user/${result.user.uid}`))
+			.then((user) => {
+				setUserData(user.data.user);
+				setBooked(user.data.booked);
+				toastSuc(`User signed in successfully`);
+				navigate("/");
 			})
 			.catch((err) => toastErr(err.message));
 	};
 
 	return (
 		<div className="my-12">
+			<div className="flex gap-12 items-center justify-center flex-wrap w-full">
+				<button
+					onClick={() =>
+						demoLogin(import.meta.env.VITE_demoadminmail, import.meta.env.VITE_demopass)
+					}
+					className="btn btn-sm btn-success rounded-full"
+				>
+					Demo Admin
+				</button>
+				<button
+					onClick={() =>
+						demoLogin(import.meta.env.VITE_demostudentmail, import.meta.env.VITE_demopass)
+					}
+					className="btn btn-sm btn-error rounded-full"
+				>
+					Demo Student
+				</button>
+				<button
+					onClick={() =>
+						demoLogin(import.meta.env.VITE_demoinstructormail, import.meta.env.VITE_demopass)
+					}
+					className="btn btn-sm btn-info rounded-full"
+				>
+					Demo Instructor
+				</button>
+			</div>
+			<div className="flex items-center text-gray-400 gap-6 w-screen p-12">
+				<hr className="flex-grow border-gray-500" />
+				<p>or</p>
+				<hr className="flex-grow border-gray-500" />
+			</div>
 			<form
 				onSubmit={loginBehavior}
 				className="flex flex-col w-11/12 md:9/12 lg:w-7/12 items-center mx-auto gap-6"

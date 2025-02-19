@@ -30,7 +30,7 @@ const CreateNote = () => {
 		<div>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="w-11/12 grid mx-auto gap-6"
+				className="w-11/12 grid mx-auto gap-6 my-12"
 			>
 				<label className="w-full input input-bordered flex items-center gap-2">
 					<MdTitle />

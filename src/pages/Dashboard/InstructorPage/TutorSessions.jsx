@@ -10,7 +10,7 @@ const TutorSessions = () => {
     return <NoData />
   }
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6 my-12">
       {sessions.map(pending => <TutorSessionCard key={pending._id} session={pending} />)}
     </div>
   );

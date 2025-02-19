@@ -26,7 +26,7 @@ const MakeAnnouncement = () => {
 			});
 	};
 	return (
-		<div>
+		<div className="my-12">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="w-11/12 grid mx-auto gap-6"

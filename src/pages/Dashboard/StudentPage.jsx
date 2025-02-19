@@ -1,43 +1,39 @@
 import { Helmet } from "react-helmet-async";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import Profile from "./AdminPage/Profile";
-import CreateNote from "./StudentPage/CreateNote";
-import AllNotes from "./StudentPage/AllNotes";
-import MyBookeds from "./StudentPage/MyBookeds";
-import MyMaterials from "./StudentPage/MyMaterials";
+import { Outlet, useNavigate } from "react-router";
+import useRole from "../../routes/components/useRole";
+import LoadingPage from "../../routes/components/LoadingPage";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import StdNav from "./StudentPage/StdNav";
 
 const StudentPage = () => {
+	const [roleData, roleDataLoading] = useRole();
+	const navigate = useNavigate();
+
+	if (roleDataLoading) {
+		return <LoadingPage />;
+	}
+	if (roleData != "student") {
+		navigate('/dashboard')
+	}
   return (
     <>
       <Helmet>
 				<title>Student Dashboard</title>
 			</Helmet>
-			<Tabs className="my-12">
-				<div className="flex justify-center w-full">
-					<TabList className="tabs tabs-boxed flex flex-wrap justify-center p-3 w-fit mx-6 mb-12 gap-3">
-						<Tab className="tab">Profile</Tab>
-						<Tab className="tab">Create Note</Tab>
-						<Tab className="tab">My Notes</Tab>
-						<Tab className="tab">My Sessions</Tab>
-						<Tab className="tab">My Materials</Tab>
-					</TabList>
+			
+			<main className="grid grid-cols-5">
+				<aside className="h-screen bg-base-300 flex flex-col justify-between items-center sticky top-0">
+					<StdNav />
+				</aside>
+				<div className="col-span-4">
+					<header className="sticky top-0 z-50 bg-base-300/30 backdrop-blur">
+						<Navbar />
+					</header>
+					<Outlet />
+					<Footer />
 				</div>
-				<TabPanel className="w-11/12 mx-auto">
-					<Profile />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<CreateNote />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<AllNotes />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<MyBookeds />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<MyMaterials />
-				</TabPanel>
-			</Tabs>
+			</main>
     </>
   );
 };

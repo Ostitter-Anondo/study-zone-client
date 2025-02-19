@@ -18,6 +18,7 @@ const ContextProvider = ({ children }) => {
 	const [userData, setUserData] = useState(null);
 	const [booked, setBooked] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [theme, setTheme] = useState(true);
 	const [paymentInfo, setPaymentInfo] = useState({ sessId: "", price: 0 });
 
 	// firebase stuff
@@ -31,11 +32,11 @@ const ContextProvider = ({ children }) => {
 		return signInWithEmailAndPassword(auth, mail, pass);
 	};
 
-  const googleProvider = new GoogleAuthProvider();
-  const signInGoogle = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
+	const googleProvider = new GoogleAuthProvider();
+	const signInGoogle = () => {
+		setLoading(true);
+		return signInWithPopup(auth, googleProvider);
+	};
 
 	const githubProvider = new GithubAuthProvider();
 	const signInGithub = () => {
@@ -86,10 +87,12 @@ const ContextProvider = ({ children }) => {
 		setUserData,
 		booked,
 		setBooked,
+		theme,
+		setTheme,
 		signupMailPass,
 		loginMailPass,
-    signInGoogle,
-    signInGithub,
+		signInGoogle,
+		signInGithub,
 		signOutUser,
 		paymentInfo,
 		setPaymentInfo,

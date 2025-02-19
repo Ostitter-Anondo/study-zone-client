@@ -75,7 +75,7 @@ const CreateSession = () => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="w-11/12 grid grid-cols-2 mx-auto gap-6"
+			className="w-11/12 grid grid-cols-2 mx-auto gap-6 my-12"
 		>
 			<label className="w-full input input-bordered flex items-center gap-2 col-span-2">
 				<MdOutlineTitle />

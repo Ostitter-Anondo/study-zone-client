@@ -1,45 +1,40 @@
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import Profile from "./AdminPage/Profile";
-import UserManagement from "./AdminPage/UserManagement";
-import ManageSessions from "./AdminPage/ManageSessions";
-import AllAdminMaterials from "./AdminPage/AllAdminMaterials";
 import { Helmet } from "react-helmet-async";
-import MakeAnnouncement from "./AdminPage/MakeAnnouncement";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { Outlet, useNavigate } from "react-router";
+import useRole from "../../routes/components/useRole";
+import LoadingPage from "../../routes/components/LoadingPage";
+import BigNav from "./AdminPage/components/BigNav";
 
 const AdminPage = () => {
+	const [roleData, roleDataLoading] = useRole();
+	const navigate = useNavigate();
+
+	if (roleDataLoading) {
+		return <LoadingPage />;
+	}
+	if (roleData != "admin") {
+		navigate('/dashboard')
+	}
+
 	return (
 		<>
 			<Helmet>
 				<title>Admin Dashboard</title>
 			</Helmet>
-			<Tabs className="my-12">
-				<div className="flex justify-center w-full">
-					<TabList className="tabs tabs-boxed flex flex-wrap justify-center p-3 w-fit mx-6 mb-12 gap-3">
-						<Tab className="tab">Profile</Tab>
-						<Tab className="tab">Users</Tab>
-						<Tab className="tab">Manage Sessions</Tab>
-						<Tab className="tab">Manage Materials</Tab>
-						<Tab className="tab">Make Announcement</Tab>
-					</TabList>
+			<main className="grid grid-cols-5">
+				<aside className="h-screen bg-base-300 flex flex-col justify-between items-center sticky top-0">
+					<BigNav />
+				</aside>
+				<div className="col-span-4">
+					<header className="sticky top-0 z-50 bg-base-300/30 backdrop-blur">
+						<Navbar />
+					</header>
+					<Outlet />
+					<Footer />
 				</div>
-
-				<TabPanel className="w-11/12 mx-auto">
-					<Profile />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<UserManagement />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<ManageSessions />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<AllAdminMaterials />
-				</TabPanel>
-				<TabPanel className="w-11/12 mx-auto">
-					<MakeAnnouncement />
-				</TabPanel>
-			</Tabs>
+			</main>
 		</>
 	);
 };

@@ -25,7 +25,7 @@ const AllMaterials = () => {
 		return <NoData />;
 	}
 	return (
-		<div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+		<div className="w-11/12 mx-auto grid lg:grid-cols-3 md:grid-cols-2 gap-6 my-12">
 			{materials.map((material) => (
 				<div
 					key={material._id}

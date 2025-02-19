@@ -1,19 +1,18 @@
 import { useEffect } from "react";
-import LoginForm from "../pages/Login/LoginForm";
 import useAxios from "../utils/useAxios";
 import useMainContext from "../utils/useMainContext";
-import LoadingPage from "./components/LoadingPage";
-import useRole from "./components/useRole";
-import AdminPage from "../pages/Dashboard/AdminPage";
-import InstructorPage from "../pages/Dashboard/InstructorPage";
-import StudentPage from "../pages/Dashboard/StudentPage";
+import { useNavigate } from "react-router";
 
 const DashboardRoute = () => {
-	const [roleData, roleDataLoading] = useRole();
-
 	const { userData } = useMainContext();
 
+	const roleData = userData.role;
+
+	console.log(roleData);
+
 	const axiosHook = useAxios();
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		axiosHook
@@ -22,33 +21,15 @@ const DashboardRoute = () => {
 			.catch((err) => console.error(err));
 	}, [axiosHook, userData.uid]);
 
-	if (roleDataLoading) {
-		return <LoadingPage />;
-	}
-
-	if (roleData === "admin") {
-		return (
-			<>
-				<AdminPage />
-			</>
-		);
-	} else if (roleData === "instructor") {
-		return (
-			<>
-				<InstructorPage />
-			</>
-		);
-	} else if (roleData === "student") {
-		return <><StudentPage /></>;
-	}
-
-	return (
-		<>
-			<div className="flex my-24 items-center justify-center">
-				<LoginForm />
-			</div>
-		</>
-	);
+	useEffect(() => {
+		if (roleData === "admin") {
+			navigate("/admin");
+		} else if (roleData === "instructor") {
+			navigate("/instructor");
+		} else if (roleData === "student") {
+			navigate("/student");
+		}
+	}, []);
 };
 
 export default DashboardRoute;

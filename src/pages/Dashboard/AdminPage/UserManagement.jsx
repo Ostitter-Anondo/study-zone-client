@@ -18,7 +18,7 @@ const UserManagement = () => {
 	};
 
 	return (
-		<>
+		<div className="my-12">
 			<div className="mx-auto w-fit mb-12">
 				<div className="join">
 					<label className="input input-bordered input-secondary flex items-center w-full max-w-xs join-item">
@@ -42,7 +42,7 @@ const UserManagement = () => {
 					<UsersCard key={user.uid} user={user} />
 				))}
 			</div>
-		</>
+		</div>
 	);
 };
 

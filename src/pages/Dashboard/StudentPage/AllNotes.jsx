@@ -15,7 +15,7 @@ const AllNotes = () => {
   }
 	return (
 		<>
-			<div className="grid mx-auto md:w-9/12 lg:w-7/12 gap-6">
+			<div className="grid mx-auto md:w-9/12 lg:w-7/12 gap-6 my-12">
 				{myNotes.map((note) => (
 					<div key={note._id} className="card bg-base-200 w-full">
 						<div className="prose lg:prose-xl card-body">

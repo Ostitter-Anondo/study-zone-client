@@ -20,7 +20,7 @@ export default {
   },
   plugins: [daisyui, typography],
   daisyui:{
-    themes: ["dim"]
+    themes: ["nord", "dim"]
   }
 }
 

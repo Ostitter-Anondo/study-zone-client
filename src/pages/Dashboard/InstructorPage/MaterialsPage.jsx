@@ -11,7 +11,7 @@ const MaterialsPage = () => {
     return <NoData />
   }
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6 my-12">
       {materialSessions.map(session=> <MaterialCard key={session._id} session={session} />)}
     </div>
   );

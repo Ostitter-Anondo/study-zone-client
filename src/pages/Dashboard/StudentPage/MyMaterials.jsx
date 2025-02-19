@@ -12,7 +12,7 @@ const MyMaterials = () => {
 	}
 
 	return (
-		<div className="flex flex-col gap-6 items-center">
+		<div className="flex flex-col gap-6 items-center my-12">
 			{myMaterials.map((material) => (
 				<div
 					key={material._id}

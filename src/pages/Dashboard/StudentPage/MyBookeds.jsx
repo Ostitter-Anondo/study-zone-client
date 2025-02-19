@@ -12,7 +12,7 @@ const MyBookeds = () => {
 		return <NoData />;
 	}
 	return (
-		<div className="flex flex-col gap-6">
+		<div className="flex flex-col gap-6 my-12">
 			{myBooked.map((booking) => (
 				<div
 					key={booking._id}
